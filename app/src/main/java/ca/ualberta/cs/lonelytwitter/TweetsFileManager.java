@@ -12,9 +12,13 @@ import java.util.List;
 import android.content.Context;
 import android.util.Log;
 
+import ca.ualberta.cs.lonelytweet.NormalLonelyTweet;
+
 public class TweetsFileManager {
 
-	private Context ctx;
+    // Add final modifier to context
+	private final Context ctx;
+	private static final String fileName = "file.sav";
 
 	public TweetsFileManager(Context ctx) {
 		this.ctx = ctx;
@@ -22,10 +26,11 @@ public class TweetsFileManager {
 
 	@SuppressWarnings("unchecked")
 	public List<NormalLonelyTweet> loadTweets() {
-		List<NormalLonelyTweet> tweets = new ArrayList<NormalLonelyTweet>();
+        // Replace explicit type with <>
+		List<NormalLonelyTweet> tweets = new ArrayList<>();
 
 		try {
-			FileInputStream fis = ctx.openFileInput("file.sav");
+			FileInputStream fis = ctx.openFileInput(fileName);
 			ObjectInputStream ois = new ObjectInputStream(fis);
 
 			Object o = ois.readObject();
